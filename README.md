@@ -29,4 +29,15 @@ A new Flutter project.
 <img width="794" height="566" alt="image" src="https://github.com/user-attachments/assets/991e34b5-874b-4097-aa61-9e67ead7ff97" />
 
 ### Challenge
+<img width="375" height="740" alt="image" src="https://github.com/user-attachments/assets/370f0fbd-bfad-4dc0-b8dd-8c80dbb14428" />
+
+<img width="382" height="751" alt="image" src="https://github.com/user-attachments/assets/ab37d9ec-56fd-4930-baa9-d9c7162b1612" />
+
+<img width="1040" height="797" alt="image" src="https://github.com/user-attachments/assets/007fd53f-2688-4323-ba23-ebd260f3cc33" />
+
+<img width="915" height="657" alt="image" src="https://github.com/user-attachments/assets/0498abe7-5970-4bf7-871e-e59fb64d953d" />
+
+<img width="739" height="281" alt="image" src="https://github.com/user-attachments/assets/3a87020d-f197-4b6d-8c67-2d85aef7a42e" />
+
+<img width="898" height="850" alt="image" src="https://github.com/user-attachments/assets/fc5b17a7-0eb2-4e33-9a76-30d0865458b6" />
 
