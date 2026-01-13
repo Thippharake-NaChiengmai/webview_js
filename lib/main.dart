@@ -32,9 +32,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late WebViewController _controller;
+
+  //Send data from JS to Flutter(1)
   String totalFromJS = '';
 
-  //Send data from JS to Flutter
+  //Send data from JS to Flutter(1)
   final String jsToFlutter = r'''
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
 </body>
 </html>''';
 
-  //Send data from Flutter to JS
+  //Send data from Flutter to JS(2)
   final String flutterToJS = r'''
 <! DOCTYPE html>
 <html lang="en">
@@ -80,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
 </body>
 </html> ''';
 
-  //Challenge
+  //Challenge(3)
   final String challenge = r'''
 <!DOCTYPE html>
 <html lang="en">
@@ -154,21 +156,34 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       )
       // ..loadHtmlString(jsToFlutter);
-      ..loadHtmlString(flutterToJS);
-    // ..loadHtmlString(challenge);
+      // ..loadHtmlString(flutterToJS);
+      ..loadHtmlString(challenge);
   }
 
+  //Send data from Flutter to JS(2)
   Future<void> _sendMessage() async {
-    // Option 1: just run JS (no return)
+    // Option 1
     await _controller.runJavaScript(
       "showMessageFromFlutter('Hello from Flutter!')",
     );
 
-    // Option 2: run JS and get returned value
+    // Option 2
     final result = await _controller.runJavaScriptReturningResult(
       "showMessageFromFlutter('Hello from Flutter with return value!')",
     );
     debugPrint("JS returned: $result");
+  }
+
+  //Challenge(3)
+  void sendDataBackToJs() {
+    int currentVal = int.tryParse(totalFromJS) ?? 0;
+    int newVal = currentVal + 100;
+
+    _controller.runJavaScript("updateTotalFromFlutter($newVal)");
+
+    setState(() {
+      totalFromJS = newVal.toString();
+    });
   }
 
   @override
@@ -183,10 +198,31 @@ class _MyHomePageState extends State<MyHomePage> {
           Expanded(child: WebViewWidget(controller: _controller)),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            // child: Text('From JS: $totalFromJS'),
-            child: ElevatedButton(
-              onPressed: _sendMessage,
-              child: const Text('Send to JS'),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                //Send data from JS to Flutter(1)
+                // child: Text('From JS: $totalFromJS'),
+
+                //Send data from Flutter to JS(2)
+                // child: ElevatedButton(
+                //   onPressed: _sendMessage,
+                //   child: const Text('Send to JS'),
+                // ),
+
+                // Challenge(3) UI: show current value from JS and provide buttons
+                Text('Received from JS: $totalFromJS'),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: sendDataBackToJs,
+                        child: const Text('Send +100 from Flutter to JS'),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ],
