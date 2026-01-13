@@ -81,7 +81,64 @@ class _MyHomePageState extends State<MyHomePage> {
 </html> ''';
 
   //Challenge
-  final String challenge = r''' ''';
+  final String challenge = r'''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebView JS Example</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .item { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
+        button { background-color: #d1e7fd; border: none; padding: 5px 15px; border-radius: 15px; color: #007bff; font-weight: bold; cursor: pointer; }
+        #total-display { font-size: 24px; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h2>My Cart</h2>
+
+    <div class="item">
+        <span>Apple - $30</span>
+        <button onclick="addToCart(30)">Add</button>
+    </div>
+    <div class="item">
+        <span>Banana - $20</span>
+        <button onclick="addToCart(20)">Add</button>
+    </div>
+    <div class="item">
+        <span>Orange - $25</span>
+        <button onclick="addToCart(25)">Add</button>
+    </div>
+
+    <h3>Cart</h3>
+    <p>Total:</p>
+    <div id="total-display">$0</div>
+
+    <script>
+        let currentTotal = 0;
+
+        function addToCart(price) {
+            currentTotal += price;
+            updateDisplay();
+            
+            if (window.FlutterChannel) {
+                window.FlutterChannel.postMessage(currentTotal.toString());
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('total-display').innerText = "$" + currentTotal;
+        }
+
+        function updateTotalFromFlutter(newTotal) {
+            currentTotal = parseInt(newTotal);
+            updateDisplay();
+        }
+    </script>
+</body>
+</html> ''';
 
   @override
   void initState() {
