@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String totalFromJS = '';
 
   //Send data from JS to Flutter
-  final String htmlContentJStoFlutter = r'''
+  final String jsToFlutter = r'''
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
 </html>''';
 
   //Send data from Flutter to JS
-  final String htmlContentFlutterToJS = r''' ''';
+  final String flutterToJS = r''' ''';
+
+  //Challenge
+  final String challenge = r''' ''';
 
   @override
   void initState() {
@@ -74,8 +77,9 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         },
       )
-      ..loadHtmlString(htmlContentJStoFlutter);
-    // ..loadHtmlString(htmlContentFlutterToJS);
+      ..loadHtmlString(jsToFlutter);
+    // ..loadHtmlString(flutterToJS);
+    // ..loadHtmlString(challenge);
   }
 
   @override
