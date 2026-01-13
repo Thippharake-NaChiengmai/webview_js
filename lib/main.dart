@@ -34,7 +34,8 @@ class _MyHomePageState extends State<MyHomePage> {
   late WebViewController _controller;
   String totalFromJS = '';
 
-  final String htmlContent = r'''
+  //Send data from JS to Flutter
+  final String htmlContentJStoFlutter = r'''
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,6 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
 </body>
 </html>''';
 
+  //Send data from Flutter to JS
+  final String htmlContentFlutterToJS = r''' ''';
+
   @override
   void initState() {
     super.initState();
@@ -70,7 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         },
       )
-      ..loadHtmlString(htmlContent);
+      ..loadHtmlString(htmlContentJStoFlutter);
+    // ..loadHtmlString(htmlContentFlutterToJS);
   }
 
   @override
