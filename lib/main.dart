@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
 </head>
 <body>
     <h1>My Cart 
-    <p id="total">Total:2 $120.00</p>
+    <p id="total">Total: $120.00</p>
     </h1>
 <button style="padding: 16px 32px; font-size: 20px; width: 100%;" onclick="sendTotalToFlutter()">Send Total to Flutter</button>
     
