@@ -59,7 +59,26 @@ class _MyHomePageState extends State<MyHomePage> {
 </html>''';
 
   //Send data from Flutter to JS
-  final String flutterToJS = r''' ''';
+  final String flutterToJS = r'''
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS from Flutter</title>
+</head>
+<body>
+    <h1>Web Page</h1>
+    <p id="msg">No message yet</p>
+
+<script>
+    function showMessageFromFlutter(msg) {
+        document.getElementById('msg').innerText = "Flutter says: " + msg;
+        return "Message received: " + msg;
+    }
+</script>
+</body>
+</html> ''';
 
   //Challenge
   final String challenge = r''' ''';
@@ -77,9 +96,22 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         },
       )
-      ..loadHtmlString(jsToFlutter);
-    // ..loadHtmlString(flutterToJS);
+      // ..loadHtmlString(jsToFlutter);
+      ..loadHtmlString(flutterToJS);
     // ..loadHtmlString(challenge);
+  }
+
+  Future<void> _sendMessage() async {
+    // Option 1: just run JS (no return)
+    await _controller.runJavaScript(
+      "showMessageFromFlutter('Hello from Flutter!')",
+    );
+
+    // Option 2: run JS and get returned value
+    final result = await _controller.runJavaScriptReturningResult(
+      "showMessageFromFlutter('Hello from Flutter with return value!')",
+    );
+    debugPrint("JS returned: $result");
   }
 
   @override
@@ -94,7 +126,11 @@ class _MyHomePageState extends State<MyHomePage> {
           Expanded(child: WebViewWidget(controller: _controller)),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('From JS: $totalFromJS'),
+            // child: Text('From JS: $totalFromJS'),
+            child: ElevatedButton(
+              onPressed: _sendMessage,
+              child: const Text('Send to JS'),
+            ),
           ),
         ],
       ),
