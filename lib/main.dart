@@ -11,11 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter JS',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter JS'),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -34,6 +34,29 @@ class _MyHomePageState extends State<MyHomePage> {
   late WebViewController _controller;
   String totalFromJS = '';
 
+  final String htmlContent = r'''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebView JS</title>
+</head>
+<body>
+    <h1>My Cart 
+    <p id="total">Total:2 $120.00</p>
+    </h1>
+<button style="padding: 16px 32px; font-size: 20px; width: 100%;" onclick="sendTotalToFlutter()">Send Total to Flutter</button>
+    
+<script>
+    function sendTotalToFlutter() {
+        var totalPrice = document.getElementById("total").innerText;
+        FlutterChannel.postMessage(totalPrice);
+    }
+</script>
+</body>
+</html>''';
+
   @override
   void initState() {
     super.initState();
@@ -47,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         },
       )
-      ..loadRequest(Uri.parse('about:blank'));
+      ..loadHtmlString(htmlContent);
   }
 
   @override
