@@ -14,10 +14,10 @@ A new Flutter project.
 <img width="827" height="454" alt="image" src="https://github.com/user-attachments/assets/02ccff82-6195-4abf-b643-b145514aeecb" />
 
 ### Flutter -> JS
-- Options 1
+- Option 1: just run JS (no return)
 <img width="378" height="745" alt="image" src="https://github.com/user-attachments/assets/483f0213-c462-49ea-8445-4782c36d3fb8" />
 
-- Options 2
+- Option 2: run JS and get returned value
 <img width="394" height="736" alt="image" src="https://github.com/user-attachments/assets/a3004ceb-64db-4534-8605-54ccf265d303" />
 
 <img width="954" height="852" alt="image" src="https://github.com/user-attachments/assets/1cd44d1d-e612-4923-bfb4-ba8198c0c27c" />
